@@ -33,7 +33,7 @@ All copy, links, projects, and services live in `src/data/profile.ts`. Component
 
 - Images: the portrait is in `public/images/`, and project screenshots are in `public/projects/`.
 - Experience: leave `experience` empty to hide the section. Fill it in to show a timeline.
-- Deployment: set `NEXT_PUBLIC_SITE_URL` to the live address before deploying. It feeds canonical links, Open Graph tags, and the sitemap.
+- Deployment: set `NEXT_PUBLIC_SITE_URL` to the full site address before deploying, for example `https://haiderjalal.com`. A bare domain also works, and the build fails with a clear message for any other value. It feeds canonical links, Open Graph tags, and the sitemap.
 
 ## Structure
 
