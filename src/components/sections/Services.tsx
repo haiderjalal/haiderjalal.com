@@ -12,20 +12,44 @@ const serviceIcons: Record<ServiceIconName, Icon> = {
   websites: Browser,
 };
 
-// Column span sets the bento shape. It belongs on the grid item (the Reveal wrapper), not the inner card.
-const cardSpans: Record<ServiceIconName, string> = {
-  consultancy: "md:col-span-2",
-  automation: "",
-  content: "",
-  websites: "md:col-span-2",
-};
+interface CardVariant {
+  span: string;
+  surface: string;
+  title: string;
+  body: string;
+  icon: string;
+}
 
-// Each card gets its own surface so the bento grid reads as deliberate rather than a row of identical tiles.
-const cardSurfaces: Record<ServiceIconName, string> = {
-  consultancy: "bg-[radial-gradient(90%_120%_at_0%_0%,var(--glow),transparent_70%)]",
-  automation: "dot-grid",
-  content: "bg-[linear-gradient(160deg,var(--glow),transparent_65%)]",
-  websites: "md:grid md:grid-cols-2 md:gap-8",
+// Black, white, and red cards keep the grid in the same palette as the hero.
+const cardVariants: Record<ServiceIconName, CardVariant> = {
+  consultancy: {
+    span: "md:col-span-2",
+    surface: "bg-foreground",
+    title: "text-background",
+    body: "text-background/75",
+    icon: "text-accent",
+  },
+  automation: {
+    span: "",
+    surface: "dot-grid bg-surface",
+    title: "text-foreground",
+    body: "text-muted",
+    icon: "text-accent-text",
+  },
+  content: {
+    span: "",
+    surface: "bg-accent",
+    title: "text-accent-contrast",
+    body: "text-accent-contrast",
+    icon: "text-accent-contrast",
+  },
+  websites: {
+    span: "md:col-span-2",
+    surface: "bg-surface md:grid md:grid-cols-2 md:gap-8",
+    title: "text-foreground",
+    body: "text-muted",
+    icon: "text-accent-text",
+  },
 };
 
 interface ServicesProps {
@@ -51,27 +75,30 @@ export function Services({ items }: ServicesProps): ReactElement {
       <div className="mt-14 grid gap-5 md:grid-cols-3">
         {items.map((service, index) => {
           const ServiceIcon = serviceIcons[service.icon];
+          const variant = cardVariants[service.icon];
 
           return (
             <Reveal
               key={service.title}
               delay={index * 0.06}
-              className={`h-full ${cardSpans[service.icon]}`}
+              className={`h-full ${variant.span}`}
             >
               <article
-                className={`flex h-full flex-col justify-between gap-10 rounded-[20px] border border-border bg-surface p-7 md:min-h-72 md:p-8 ${cardSurfaces[service.icon]}`}
+                className={`flex h-full flex-col justify-between gap-10 rounded-[20px] border border-border p-7 md:min-h-72 md:p-8 ${variant.surface}`}
               >
                 <div>
                   <ServiceIcon
                     aria-hidden="true"
                     size={32}
                     weight="duotone"
-                    className="text-accent-text"
+                    className={variant.icon}
                   />
-                  <h3 className="mt-6 text-2xl font-semibold tracking-tight">
+                  <h3
+                    className={`mt-6 text-2xl font-semibold tracking-tight ${variant.title}`}
+                  >
                     {service.title}
                   </h3>
-                  <p className="mt-3 max-w-md leading-relaxed text-muted">
+                  <p className={`mt-3 max-w-md leading-relaxed ${variant.body}`}>
                     {service.description}
                   </p>
                 </div>

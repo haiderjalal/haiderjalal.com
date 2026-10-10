@@ -30,10 +30,10 @@ export function Contact({ socials }: ContactProps): ReactElement {
       className="mx-auto max-w-7xl px-6 pb-28 md:pb-36"
     >
       <Reveal>
-        <div className="relative overflow-hidden rounded-[20px] border border-border bg-surface p-8 md:p-14">
+        <div className="relative overflow-hidden rounded-[20px] bg-foreground p-8 text-background md:p-14">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-28 -top-28 size-[28rem] rounded-full bg-[radial-gradient(closest-side,var(--glow),transparent)]"
+            className="pointer-events-none absolute -right-28 -top-28 size-[28rem] rounded-full bg-[radial-gradient(closest-side,var(--accent),transparent)] opacity-40"
           />
 
           <h2
@@ -42,7 +42,7 @@ export function Contact({ socials }: ContactProps): ReactElement {
           >
             I take on AI consultancy and remote projects.
           </h2>
-          <p className="relative mt-6 max-w-2xl text-lg text-muted">
+          <p className="relative mt-6 max-w-2xl text-lg text-background/75">
             Reach out on LinkedIn, Facebook, Instagram, or through the Musme website to start
             a conversation.
           </p>
@@ -57,24 +57,24 @@ export function Contact({ socials }: ContactProps): ReactElement {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex h-full min-h-44 flex-col justify-between gap-8 rounded-[20px] border border-border bg-background/60 p-6 transition-colors duration-300 hover:border-accent"
+                    className="group flex h-full min-h-44 flex-col justify-between gap-8 rounded-[20px] border border-background/20 bg-background/5 p-6 transition-colors duration-300 hover:border-accent"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <SocialIcon
                         aria-hidden="true"
                         size={30}
                         weight="duotone"
-                        className="text-accent-text"
+                        className="text-accent"
                       />
                       <ArrowUpRight
                         aria-hidden="true"
                         size={20}
-                        className="shrink-0 text-muted transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-text"
+                        className="shrink-0 text-background/70 transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
                       />
                     </div>
                     <div className="flex flex-col">
                       <span className="font-semibold">{social.label}</span>
-                      <span className="break-all text-sm text-muted">{social.handle}</span>
+                      <span className="break-all text-sm text-background/70">{social.handle}</span>
                     </div>
                   </a>
                 </li>
