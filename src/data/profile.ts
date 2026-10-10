@@ -206,8 +206,8 @@ export const profile: Profile = {
     },
     {
       label: "Facebook",
-      handle: "facebook.com/share/1CFBYEZj1g",
-      href: "https://www.facebook.com/share/1CFBYEZj1g/?mibextid=wwXIfr",
+      handle: "facebook.com/haiderjalalo",
+      href: "https://www.facebook.com/haiderjalalo",
       icon: "facebook",
     },
     {
