@@ -1,6 +1,5 @@
-import type { ReactElement } from "react";
-
 import { Sparkle } from "@/components/ui/icons";
+import type { ReactElement } from "react";
 
 interface TickerProps {
   items: readonly string[];
@@ -9,7 +8,7 @@ interface TickerProps {
 // The only marquee on the page. The list is repeated so the loop restarts without a visible seam.
 export function Ticker({ items }: TickerProps): ReactElement {
   return (
-    <div className="edge-fade overflow-hidden border-y border-border py-6">
+    <div className="edge-fade overflow-hidden bg-foreground py-6">
       <div className="marquee-track flex w-max">
         <TickerGroup items={items} />
         <TickerGroup items={items} duplicate />
@@ -31,7 +30,7 @@ function TickerGroup({ items, duplicate = false }: TickerGroupProps): ReactEleme
     >
       {items.map((item) => (
         <li key={item} className="flex shrink-0 items-center gap-10 pr-10">
-          <span className="text-2xl font-semibold tracking-tight text-muted md:text-3xl">
+          <span className="font-display text-2xl font-bold uppercase tracking-tight text-background md:text-3xl">
             {item}
           </span>
           <Sparkle aria-hidden="true" size={22} weight="fill" className="shrink-0 text-accent" />

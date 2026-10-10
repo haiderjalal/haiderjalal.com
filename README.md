@@ -2,7 +2,7 @@
 
 Portfolio site for Haider Jalal, AI generalist and software engineer based in Islamabad, Pakistan.
 
-Built with Next.js 16, React 19, Tailwind CSS v4, Motion, and React Three Fiber.
+Built with Next.js 16, React 19, Tailwind CSS v4, and Motion.
 
 ## Getting started
 
@@ -13,6 +13,8 @@ npm run dev
 ```
 
 Open http://localhost:3000. On Windows PowerShell, use `Copy-Item .env.example .env.local` instead of `cp`.
+
+Locally the site runs over plain HTTP. HTTPS comes from the hosting platform once the site is deployed.
 
 ## Scripts
 
@@ -29,9 +31,9 @@ Open http://localhost:3000. On Windows PowerShell, use `Copy-Item .env.example .
 
 All copy, links, projects, and services live in `src/data/profile.ts`. Components read from that file, so most content changes need no component edits.
 
-- Images: the portrait is in `public/images/` and project screenshots are in `public/projects/`.
+- Images: the portrait is in `public/images/`, and project screenshots are in `public/projects/`.
 - Experience: leave `experience` empty to hide the section. Fill it in to show a timeline.
-- Deployment: set `NEXT_PUBLIC_SITE_URL` to the live domain before deploying. It feeds canonical links, Open Graph tags, and the sitemap.
+- Deployment: set `NEXT_PUBLIC_SITE_URL` to the live address before deploying. It feeds canonical links, Open Graph tags, and the sitemap.
 
 ## Structure
 
@@ -40,11 +42,9 @@ src/
   app/          routes, metadata, OG image, sitemap, robots
   components/
     layout/     navbar, footer, cursor spotlight
-    sections/   hero, about, services, work, experience, contact
-    three/      WebGL hero scene (client only)
+    sections/   hero with the project card fan, about, services, work, experience, contact
     ui/         reveal, tilt card, magnetic link, icon re-exports
   data/         portfolio content
-  hooks/        client hooks
   lib/          site-wide constants
   types/        content types
 ```

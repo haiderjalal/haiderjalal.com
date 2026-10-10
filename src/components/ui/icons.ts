@@ -5,6 +5,8 @@
 export {
   ArrowUpRight,
   Browser,
+  CaretLeft,
+  CaretRight,
   FacebookLogo,
   FlowArrow,
   Globe,
@@ -12,6 +14,7 @@ export {
   Lightbulb,
   LinkedinLogo,
   PenNib,
+  Plus,
   Sparkle,
   Waveform,
 } from "@phosphor-icons/react";

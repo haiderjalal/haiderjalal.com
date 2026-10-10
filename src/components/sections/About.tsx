@@ -18,21 +18,23 @@ export function About({ about, portrait }: AboutProps): ReactElement {
       className="mx-auto grid max-w-7xl items-center gap-14 px-6 py-28 md:grid-cols-[0.9fr_1.1fr] md:gap-20 md:py-36"
     >
       <Reveal>
-        <TiltCard className="mx-auto w-full max-w-md rounded-[20px]">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-border bg-surface">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,var(--glow),transparent_60%)]"
-            />
-            <Image
-              src={portrait.src}
-              alt={portrait.alt}
-              fill
-              sizes="(min-width: 768px) 32vw, 90vw"
-              className="object-cover object-top"
-            />
-          </div>
-        </TiltCard>
+        <div className="relative mx-auto w-full max-w-md">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 translate-x-4 translate-y-4 rounded-[20px] bg-accent"
+          />
+          <TiltCard className="relative rounded-[20px]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px] border border-border bg-surface">
+              <Image
+                src={portrait.src}
+                alt={portrait.alt}
+                fill
+                sizes="(min-width: 768px) 32vw, 90vw"
+                className="object-cover object-top"
+              />
+            </div>
+          </TiltCard>
+        </div>
       </Reveal>
 
       <div>

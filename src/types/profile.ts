@@ -13,6 +13,12 @@ export interface SiteLocation {
   countryCode: string;
 }
 
+export interface Agency {
+  name: string;
+  url: string;
+  tagline: string;
+}
+
 export interface Fact {
   label: string;
   value: string;
@@ -66,6 +72,7 @@ export interface Profile {
   intro: string;
   roles: readonly string[];
   location: SiteLocation;
+  agency: Agency;
   portrait: ImageAsset;
   about: AboutContent;
   tickerItems: readonly string[];

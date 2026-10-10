@@ -1,34 +1,37 @@
 @import "tailwindcss";
 
 /*
- * Theme tokens. The palette follows the system colour scheme and stays locked for the whole page,
- * so no section flips mid-scroll. Green and navy come from the Musme brand.
+ * Theme tokens. Light is the default, and dark follows prefers-color-scheme.
+ * Each mode stays locked for the whole page, so no section flips mid-scroll.
+ * Palette: warm grey paper, black ink, and one red accent.
  * Radius rule: cards 20px, media inside cards 16px, buttons and tags fully rounded.
  */
 :root {
-  --background: #f4f8f6;
+  --background: #e7e7e4;
   --surface: #ffffff;
-  --foreground: #0f172a;
-  --muted: #475569;
-  --border: rgb(15 23 42 / 0.12);
-  --accent: #6ec49b;
-  --accent-text: #137450;
-  --accent-contrast: #052014;
-  --glow: rgb(110 196 155 / 0.22);
-  --spotlight: rgb(19 116 80 / 0.08);
+  --foreground: #0b0b0b;
+  --muted: #4f4f4f;
+  --border: rgb(11 11 11 / 0.14);
+  --accent: #d12b1f;
+  --accent-text: #b3241a;
+  --accent-contrast: #ffffff;
+  --glow: rgb(209 43 31 / 0.14);
+  --spotlight: rgb(11 11 11 / 0.06);
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #070c17;
-    --surface: #0f172a;
-    --foreground: #eef5f1;
-    --muted: #9aa8bb;
-    --border: rgb(255 255 255 / 0.1);
-    --accent-text: #6ec49b;
-    --glow: rgb(110 196 155 / 0.18);
-    --spotlight: rgb(110 196 155 / 0.1);
+    --background: #0b0b0b;
+    --surface: #161616;
+    --foreground: #f2f2ef;
+    --muted: #a3a3a0;
+    --border: rgb(255 255 255 / 0.12);
+    --accent: #ff4b3a;
+    --accent-text: #ff6f60;
+    --accent-contrast: #0b0b0b;
+    --glow: rgb(255 75 58 / 0.16);
+    --spotlight: rgb(255 255 255 / 0.05);
     color-scheme: dark;
   }
 }
@@ -44,6 +47,7 @@
   --color-accent-contrast: var(--accent-contrast);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo);
 }
 
 @layer base {
@@ -55,10 +59,23 @@
     scroll-margin-top: 5rem;
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
+}
+
+/* Hero card fan. These variables size the cards and keep the arc inside the viewport. */
+.fan-stage {
+  --fan-card-w: clamp(150px, 17vw, 232px);
+  --fan-card-h: calc(var(--fan-card-w) * 1.3);
+  --fan-radius: min(calc(80vh - var(--fan-card-h)), 58vw);
 }
 
 .glass {
@@ -85,17 +102,40 @@
   background-size: 18px 18px;
 }
 
-@keyframes word-rise {
-  from {
-    transform: translate3d(0, 110%, 0);
+/* Hero letters cycle between solid and outline, one after another, so the change reads as a wave. */
+.outline-letter {
+  color: var(--foreground);
+  -webkit-text-stroke-color: var(--foreground);
+  -webkit-text-stroke-width: 0;
+  animation: outline-cycle 7s ease-in-out infinite;
+}
+
+@keyframes outline-cycle {
+  0%,
+  28%,
+  100% {
+    color: var(--foreground);
+    -webkit-text-stroke-width: 0;
   }
-  to {
-    transform: translate3d(0, 0, 0);
+  40%,
+  60% {
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
   }
 }
 
-.word-rise {
-  animation: word-rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+.hero-bar {
+  transform-origin: 50% 0%;
+  animation: bar-grow 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
 }
 
 @keyframes marquee {
@@ -113,7 +153,11 @@
     scroll-behavior: auto;
   }
 
-  .word-rise {
+  .outline-letter {
+    animation: none;
+  }
+
+  .hero-bar {
     animation: none;
   }
 

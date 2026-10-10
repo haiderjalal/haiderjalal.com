@@ -12,6 +12,11 @@ export const profile: Profile = {
     "I help businesses grow with AI through automation, content, and websites. Based in Islamabad, working with clients remotely.",
   roles: ["AI generalist", "Software engineer", "Founder, Musme"],
   location: { city: "Islamabad", country: "Pakistan", countryCode: "PK" },
+  agency: {
+    name: "Musme",
+    url: "https://musme.co",
+    tagline: "AI automation, AI content, and digital products.",
+  },
   portrait: {
     src: "/images/haider-portrait.png",
     alt: "Portrait of Haider Jalal",
