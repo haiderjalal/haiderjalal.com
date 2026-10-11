@@ -84,7 +84,7 @@ export function Services({ items }: ServicesProps): ReactElement {
               className={`h-full ${variant.span}`}
             >
               <article
-                className={`flex h-full flex-col justify-between gap-10 rounded-[20px] border border-border p-7 md:min-h-72 md:p-8 ${variant.surface}`}
+                className={`flex h-full flex-col justify-between gap-10 rounded-[20px] border border-border p-7 transition-[transform,box-shadow] duration-500 hover:shadow-[0_28px_50px_-32px_rgb(0_0_0/0.45)] motion-safe:hover:-translate-y-1 md:min-h-72 md:p-8 ${variant.surface}`}
               >
                 <div>
                   <ServiceIcon

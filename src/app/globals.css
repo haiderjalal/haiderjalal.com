@@ -79,7 +79,7 @@
 }
 
 .glass {
-  background: color-mix(in oklab, var(--background) 75%, transparent);
+  background: color-mix(in oklab, var(--background) 90%, transparent);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
@@ -100,6 +100,12 @@
 .dot-grid {
   background-image: radial-gradient(var(--border) 1px, transparent 1px);
   background-size: 18px 18px;
+}
+
+/* Fades the dot grid out toward the edges, so it frames the hero headline rather than competing with it. */
+.dot-fade {
+  mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 40%, #000, transparent 75%);
 }
 
 /* Hero letters cycle between solid and outline, one after another, so the change reads as a wave. */
@@ -148,6 +154,42 @@
   animation: marquee 40s linear infinite;
 }
 
+[data-paused="true"] .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Hero content rises in one piece at a time. The delay is set per element with --rise-delay. */
+.rise {
+  animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--rise-delay, 0s);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* A slow drift for the contact glow. It only runs when the visitor has not asked for less motion. */
+.aurora {
+  animation: aurora 14s ease-in-out infinite;
+}
+
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-48px, 36px, 0) scale(1.08);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -167,5 +209,13 @@
 
   .marquee-duplicate {
     display: none;
+  }
+
+  .rise {
+    animation: none;
+  }
+
+  .aurora {
+    animation: none;
   }
 }

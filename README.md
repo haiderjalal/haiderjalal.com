@@ -43,7 +43,8 @@ src/
   components/
     layout/     navbar, footer, cursor spotlight
     sections/   hero with the project card fan, about, services, work, experience, contact
-    ui/         reveal, tilt card, magnetic link, icon re-exports
+    ui/         reveal, tilt card, magnetic link, pausable ticker, timeline rail, icon re-exports
+  hooks/        navbar section tracking
   data/         portfolio content
   lib/          site-wide constants
   types/        content types

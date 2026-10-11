@@ -18,17 +18,17 @@ export default function OpenGraphImage(): ImageResponse {
           width: "100%",
           height: "100%",
           padding: 84,
-          background: "#070c17",
-          color: "#eef5f1",
+          background: "#e7e7e4",
+          color: "#0b0b0b",
         }}
       >
-        <div style={{ display: "flex", fontSize: 30, color: "#6ec49b" }}>
+        <div style={{ display: "flex", fontSize: 30, color: "#d12b1f" }}>
           {profile.headline}
         </div>
         <div style={{ display: "flex", fontSize: 128, fontWeight: 700, letterSpacing: -4 }}>
           {profile.name}
         </div>
-        <div style={{ display: "flex", fontSize: 32, color: "#9aa8bb" }}>
+        <div style={{ display: "flex", fontSize: 32, color: "#4f4f4f" }}>
           {`${profile.location.city}, ${profile.location.country}`}
         </div>
       </div>

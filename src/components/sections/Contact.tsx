@@ -33,7 +33,7 @@ export function Contact({ socials }: ContactProps): ReactElement {
         <div className="relative overflow-hidden rounded-[20px] bg-foreground p-8 text-background md:p-14">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-28 -top-28 size-[28rem] rounded-full bg-[radial-gradient(closest-side,var(--accent),transparent)] opacity-40"
+            className="aurora pointer-events-none absolute -right-28 -top-28 size-[28rem] rounded-full bg-[radial-gradient(closest-side,var(--accent),transparent)] opacity-40"
           />
 
           <h2
@@ -47,7 +47,7 @@ export function Contact({ socials }: ContactProps): ReactElement {
             a conversation.
           </p>
 
-          <ul className="relative mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="relative mt-12 grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
             {socials.map((social) => {
               const SocialIcon = socialIcons[social.icon];
 
@@ -57,7 +57,7 @@ export function Contact({ socials }: ContactProps): ReactElement {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex h-full min-h-44 flex-col justify-between gap-8 rounded-[20px] border border-background/20 bg-background/5 p-6 transition-colors duration-300 hover:border-accent"
+                    className="group flex h-full min-h-36 flex-col justify-between gap-8 rounded-[20px] border border-background/20 bg-background/5 p-4 transition-colors duration-300 hover:border-accent md:min-h-44 md:p-6"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <SocialIcon

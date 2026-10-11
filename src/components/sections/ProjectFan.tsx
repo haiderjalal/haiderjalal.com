@@ -293,7 +293,11 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
       </button>
 
       <div className="pointer-events-none absolute inset-x-0 top-[52%] z-20 flex flex-col items-center gap-3 px-6 text-center md:top-auto md:bottom-0 md:flex-row md:items-end md:justify-between md:gap-6 md:px-10 md:pb-8 md:text-left">
-        <div key={activeIndex} className="min-w-0">
+        {/* Keyed by card, so the caption rises in again each time the front card changes. */}
+        <div
+          key={activeIndex}
+          className="rise min-w-0 md:rounded-[20px] md:border md:border-border md:bg-surface/85 md:px-5 md:py-4 md:backdrop-blur-md"
+        >
           <p className="font-display text-xl font-bold uppercase leading-tight tracking-tight text-foreground md:text-2xl">
             {active.name}
           </p>
