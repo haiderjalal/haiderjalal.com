@@ -1,6 +1,7 @@
 import type { ReactElement } from "react";
 
 import { Reveal } from "@/components/ui/Reveal";
+import { TimelineRail } from "@/components/ui/TimelineRail";
 import type { EducationItem, ExperienceItem } from "@/types/profile";
 
 interface ExperienceProps {
@@ -26,25 +27,32 @@ export function Experience({ experience, education }: ExperienceProps): ReactEle
       </Reveal>
 
       {experience.length > 0 ? (
-        <ol className="mt-14 space-y-12 md:space-y-16">
-          {experience.map((item) => (
-            <li
-              key={`${item.organization}-${item.role}-${item.period}`}
-              className="grid gap-3 md:grid-cols-[14rem_1fr] md:gap-10"
-            >
-              <p className="font-mono text-sm text-muted">{item.period}</p>
-              <div>
-                <h3 className="text-xl font-semibold tracking-tight">{item.role}</h3>
-                <p className="mt-1 text-accent-text">{item.organization}</p>
-                {item.summary ? (
-                  <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-                    {item.summary}
-                  </p>
-                ) : null}
-              </div>
-            </li>
-          ))}
-        </ol>
+        <div className="relative mt-14">
+          <TimelineRail />
+          <ol className="space-y-12 md:space-y-16">
+            {experience.map((item) => (
+              <li
+                key={`${item.organization}-${item.role}-${item.period}`}
+                className="relative grid gap-3 pl-8 md:grid-cols-[14rem_1fr] md:gap-10"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-1.5 size-[11px] rounded-full border-2 border-accent bg-background"
+                />
+                <p className="font-mono text-sm text-muted">{item.period}</p>
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight">{item.role}</h3>
+                  <p className="mt-1 text-accent-text">{item.organization}</p>
+                  {item.summary ? (
+                    <p className="mt-3 max-w-2xl leading-relaxed text-muted">
+                      {item.summary}
+                    </p>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       ) : null}
 
       {education.length > 0 ? (
