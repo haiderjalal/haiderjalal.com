@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
 
 import { Plus } from "@/components/ui/icons";
 import { MagneticLink } from "@/components/ui/MagneticLink";
@@ -40,6 +40,11 @@ function buildFanItems(profile: Profile): FanItem[] {
   return [...projects.slice(0, middle), brand, ...projects.slice(middle)];
 }
 
+// Sets the start time of a CSS entrance, so the hero content rises in sequence without any JavaScript.
+function riseStyle(delaySeconds: number): CSSProperties {
+  return { "--rise-delay": `${delaySeconds}s` } as CSSProperties;
+}
+
 function renderWord(word: string, firstLetterIndex: number): ReactElement {
   return (
     <span className="inline-flex">
@@ -68,6 +73,10 @@ export function Hero({ profile }: HeroProps): ReactElement {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_30%,var(--glow),transparent)]"
       />
+      <div
+        aria-hidden="true"
+        className="dot-grid dot-fade pointer-events-none absolute inset-0 opacity-70"
+      />
       <Plus
         aria-hidden="true"
         size={18}
@@ -82,14 +91,17 @@ export function Hero({ profile }: HeroProps): ReactElement {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-10">
-        <div className="flex items-center justify-between gap-6">
+        <div className="rise flex items-center justify-between gap-6" style={riseStyle(0)}>
           <RotatingRole roles={profile.roles} />
           <p className="font-mono text-sm text-muted">
             {profile.location.city}, {profile.location.country}
           </p>
         </div>
 
-        <h1 className="mt-10 text-center font-display text-[clamp(2.25rem,9.5vw,8.75rem)] font-black uppercase leading-[0.92] tracking-[-0.02em] text-foreground">
+        <h1
+          className="rise mt-10 text-center font-display text-[clamp(2.25rem,9.5vw,8.75rem)] font-black uppercase leading-[0.92] tracking-[-0.02em] text-foreground"
+          style={riseStyle(0.1)}
+        >
           <span className="sr-only">{profile.name}</span>
           <span
             aria-hidden="true"
@@ -107,10 +119,16 @@ export function Hero({ profile }: HeroProps): ReactElement {
         </h1>
 
         <div className="mt-8 flex flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left">
-          <p className="max-w-sm text-base leading-relaxed text-muted md:text-lg">
+          <p
+            className="rise max-w-sm text-base leading-relaxed text-muted md:text-lg"
+            style={riseStyle(0.2)}
+          >
             {profile.intro}
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div
+            className="rise flex flex-wrap justify-center gap-3"
+            style={riseStyle(0.3)}
+          >
             <MagneticLink href={primaryCta.href} variant="primary">
               {primaryCta.label}
             </MagneticLink>
