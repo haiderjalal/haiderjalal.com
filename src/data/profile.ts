@@ -120,6 +120,22 @@ export const profile: Profile = {
       image: { src: "/projects/peptologics.jpg", alt: "PeptoLogics website" },
       tags: ["Next.js", "Supabase", "Leads"],
     },
+    {
+      name: "Citable",
+      summary:
+        "Scans a web page and shows what people see next to what AI search engines receive, since those engines cannot run JavaScript.",
+      url: "https://citable.musme.co/",
+      image: { src: "/projects/citable.jpg", alt: "Citable website" },
+      tags: ["AI search", "SEO", "Audit"],
+    },
+    {
+      name: "TestShift",
+      summary:
+        "An AI QA team rented by the hour. Four agents test a website in a real browser and deliver a bug report.",
+      url: "https://testshift.musme.co/",
+      image: { src: "/projects/testshift.jpg", alt: "TestShift website" },
+      tags: ["AI", "QA", "On demand"],
+    },
   ],
   experience: [
     {
