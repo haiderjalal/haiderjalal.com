@@ -1,4 +1,5 @@
 import { Sparkle } from "@/components/ui/icons";
+import { PausableMarquee } from "@/components/ui/PausableMarquee";
 import type { ReactElement } from "react";
 
 interface TickerProps {
@@ -8,12 +9,12 @@ interface TickerProps {
 // The only marquee on the page. The list is repeated so the loop restarts without a visible seam.
 export function Ticker({ items }: TickerProps): ReactElement {
   return (
-    <div className="edge-fade overflow-hidden bg-foreground py-6">
+    <PausableMarquee>
       <div className="marquee-track flex w-max">
         <TickerGroup items={items} />
         <TickerGroup items={items} duplicate />
       </div>
-    </div>
+    </PausableMarquee>
   );
 }
 
