@@ -45,6 +45,16 @@ export interface ProjectItem {
   tags: readonly string[];
 }
 
+export interface ProductItem {
+  name: string;
+  tagline: string;
+  summary: string;
+  url: string;
+  image: ImageAsset;
+  badge: string;
+  highlights: readonly string[];
+}
+
 export interface ExperienceItem {
   role: string;
   organization: string;
@@ -78,6 +88,7 @@ export interface Profile {
   tickerItems: readonly string[];
   services: readonly ServiceItem[];
   projects: readonly ProjectItem[];
+  products: readonly ProductItem[];
   experience: readonly ExperienceItem[];
   education: readonly EducationItem[];
   socials: readonly SocialLink[];

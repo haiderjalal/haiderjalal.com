@@ -121,22 +121,6 @@ export const profile: Profile = {
       tags: ["Next.js", "Supabase", "Leads"],
     },
     {
-      name: "Citable",
-      summary:
-        "Scans a web page and shows what people see next to what AI search engines receive, since those engines cannot run JavaScript.",
-      url: "https://citable.musme.co/",
-      image: { src: "/projects/citable.jpg", alt: "Citable website" },
-      tags: ["AI search", "SEO", "Audit"],
-    },
-    {
-      name: "TestShift",
-      summary:
-        "An AI QA team rented by the hour. Four agents test a website in a real browser and deliver a bug report.",
-      url: "https://testshift.musme.co/",
-      image: { src: "/projects/testshift.jpg", alt: "TestShift website" },
-      tags: ["AI", "QA", "On demand"],
-    },
-    {
       name: "HonyB",
       summary:
         "Raw Sidr, Acacia, and Wildflower honey delivered across Pakistan. Orders are built online and confirmed by phone or WhatsApp.",
@@ -159,6 +143,36 @@ export const profile: Profile = {
       url: "https://mamacrochet.musme.co/",
       image: { src: "/projects/mamacrochet.jpg", alt: "Mama Crochet website" },
       tags: ["Handmade", "Custom", "Gifts"],
+    },
+  ],
+  products: [
+    {
+      name: "Citable",
+      tagline: "See your site the way AI search does.",
+      summary:
+        "Citable scans a page and shows what people see next to what AI search retrieves. Content that only appears after JavaScript loads gets flagged, because no major AI crawler runs JavaScript.",
+      url: "https://citable.musme.co/",
+      image: { src: "/projects/citable.jpg", alt: "Citable homepage headline" },
+      badge: "One free page scan per browser",
+      highlights: [
+        "Rendered and retrieved views, side by side",
+        "33 checks on every scanned page",
+        "Personal AEO and GEO report, delivered on WhatsApp after payment",
+      ],
+    },
+    {
+      name: "TestShift",
+      tagline: "Four AI agents. One QA shift.",
+      summary:
+        "Rent an AI QA team by the hour. Dev, Staging, UAT, and Prod agents test your site in a real browser, then hand you the bug report.",
+      url: "https://testshift.musme.co/",
+      image: { src: "/projects/testshift.jpg", alt: "TestShift homepage" },
+      badge: "First 20 minutes free, no card needed",
+      highlights: [
+        "Each agent owns one environment and one kind of test",
+        "Failures ranked by severity, with steps to reproduce",
+        "Replayable browser checks for your CI",
+      ],
     },
   ],
   experience: [

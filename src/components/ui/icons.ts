@@ -6,6 +6,7 @@ export {
   ArrowUpRight,
   Browser,
   CaretLeft,
+  CheckCircle,
   CaretRight,
   FacebookLogo,
   FlowArrow,

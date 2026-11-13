@@ -16,10 +16,17 @@ interface MagneticLinkProps {
   href: string;
   children: ReactNode;
   variant: keyof typeof variantClasses;
+  // Opens the link in a new tab, for destinations outside the site.
+  external?: boolean;
 }
 
 // A call-to-action that leans toward the pointer. Motion values keep the pull off React's render path.
-export function MagneticLink({ href, children, variant }: MagneticLinkProps): ReactElement {
+export function MagneticLink({
+  href,
+  children,
+  variant,
+  external = false,
+}: MagneticLinkProps): ReactElement {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const x = useSpring(0, { stiffness: 300, damping: 22, mass: 0.5 });
@@ -49,6 +56,8 @@ export function MagneticLink({ href, children, variant }: MagneticLinkProps): Re
     >
       <Link
         href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
         className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition duration-300 active:scale-[0.98] ${variantClasses[variant]}`}
       >
         {children}

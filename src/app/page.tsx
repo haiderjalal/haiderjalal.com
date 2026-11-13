@@ -4,6 +4,7 @@ import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
+import { Products } from "@/components/sections/Products";
 import { Services } from "@/components/sections/Services";
 import { Ticker } from "@/components/sections/Ticker";
 import { Work } from "@/components/sections/Work";
@@ -17,6 +18,7 @@ export default function HomePage(): ReactElement {
     <>
       <Hero profile={profile} />
       <Ticker items={profile.tickerItems} />
+      <Products products={profile.products} />
       <About about={profile.about} portrait={profile.portrait} />
       <Services items={profile.services} />
       <Work projects={profile.projects} />
