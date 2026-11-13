@@ -72,7 +72,7 @@ export function Hero({ profile }: HeroProps): ReactElement {
     <section className="fan-stage relative isolate flex min-h-[100dvh] flex-col overflow-hidden pt-24">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_30%,var(--glow),transparent)]"
+        className="aurora pointer-events-none absolute inset-0 bg-[radial-gradient(55%_45%_at_50%_30%,var(--glow),transparent)]"
       />
       <div
         aria-hidden="true"
