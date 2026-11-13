@@ -136,6 +136,30 @@ export const profile: Profile = {
       image: { src: "/projects/testshift.jpg", alt: "TestShift website" },
       tags: ["AI", "QA", "On demand"],
     },
+    {
+      name: "HonyB",
+      summary:
+        "Raw Sidr, Acacia, and Wildflower honey delivered across Pakistan. Orders are built online and confirmed by phone or WhatsApp.",
+      url: "https://honyb.musme.co/",
+      image: { src: "/projects/honyb.jpg", alt: "HonyB website" },
+      tags: ["E-commerce", "Interactive", "Pakistan"],
+    },
+    {
+      name: "Xander's",
+      summary:
+        "A 254-item menu, branch details, and online ordering for a gourmet café with four branches in Karachi and Islamabad.",
+      url: "https://xanders.musme.co/",
+      image: { src: "/projects/xanders.jpg", alt: "Xander's website" },
+      tags: ["Food", "Ordering", "3D & AR"],
+    },
+    {
+      name: "Mama Crochet",
+      summary:
+        "Handmade crochet for the home, gifts, and baby keepsakes, including custom pieces made from a visitor's own idea and colours.",
+      url: "https://mamacrochet.musme.co/",
+      image: { src: "/projects/mamacrochet.jpg", alt: "Mama Crochet website" },
+      tags: ["Handmade", "Custom", "Gifts"],
+    },
   ],
   experience: [
     {

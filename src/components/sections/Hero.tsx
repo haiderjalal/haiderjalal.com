@@ -27,17 +27,18 @@ function toFanItem(project: ProjectItem): FanItem {
   };
 }
 
-// The brand card sits in the middle of the fan, so the projects split evenly on either side.
+// The brand card sits at the centre index the fan starts on, so it is the front card when the page loads.
+// With an odd number of projects, the projects split one card unevenly across the two sides.
 function buildFanItems(profile: Profile): FanItem[] {
   const projects = profile.projects.map(toFanItem);
-  const middle = Math.floor(projects.length / 2);
+  const brandIndex = Math.floor((projects.length + 1) / 2);
   const brand: FanItem = {
     kind: "brand",
     name: profile.agency.name,
     href: profile.agency.url,
     tagline: profile.agency.tagline,
   };
-  return [...projects.slice(0, middle), brand, ...projects.slice(middle)];
+  return [...projects.slice(0, brandIndex), brand, ...projects.slice(brandIndex)];
 }
 
 // Sets the start time of a CSS entrance, so the hero content rises in sequence without any JavaScript.
