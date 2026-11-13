@@ -46,6 +46,9 @@ export type FanItem = ProjectFanItem | BrandFanItem;
 
 // Degrees between neighbouring cards. The fan is symmetric around the centre card.
 const STEP_DEG = 16;
+// The fan never spans more than this, so extra cards overlap instead of widening the arc.
+// This is the span of nine cards at STEP_DEG, the footprint the hero was designed for.
+const MAX_SPREAD_DEG = 128;
 // Idle sway in degrees. It stays small so the front card never changes while the fan drifts.
 const SWAY_DEG = 2;
 const SWAY_PERIOD_MS = 1600;
@@ -143,6 +146,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
   const reduce = useReducedMotion();
   const centerIndex = Math.floor(items.length / 2);
   const lastIndex = items.length - 1;
+  const stepDeg = Math.min(STEP_DEG, MAX_SPREAD_DEG / Math.max(lastIndex, 1));
 
   const offset = useMotionValue(0); // turn from drag, arrows, or snapping
   const sway = useMotionValue(0); // gentle idle motion
@@ -158,7 +162,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
   const movedRef = useRef(false);
 
   useMotionValueEvent(rotation, "change", (value) => {
-    const next = clamp(Math.round(centerIndex - value / STEP_DEG), 0, lastIndex);
+    const next = clamp(Math.round(centerIndex - value / stepDeg), 0, lastIndex);
     if (next !== activeRef.current) {
       activeRef.current = next;
       setActiveIndex(next);
@@ -185,7 +189,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
   function goTo(index: number): void {
     const target = clamp(index, 0, lastIndex);
     targetRef.current = target;
-    const turn = -(target - centerIndex) * STEP_DEG;
+    const turn = -(target - centerIndex) * stepDeg;
     if (reduce) {
       offset.set(turn);
       return;
@@ -216,7 +220,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
     const dragged = movedRef.current;
     dragRef.current = null;
     if (dragged) {
-      goTo(Math.round(centerIndex - offset.get() / STEP_DEG));
+      goTo(Math.round(centerIndex - offset.get() / stepDeg));
     }
     // A click can follow the pointer-up, so the drag flag is cleared only after the click has been handled.
     window.setTimeout(() => {
@@ -267,7 +271,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
           <FanCard
             key={item.name}
             item={item}
-            baseAngle={(index - centerIndex) * STEP_DEG}
+            baseAngle={(index - centerIndex) * stepDeg}
             rotation={rotation}
             spread={spread}
             onClick={(event) => handleCardClick(event, index)}
