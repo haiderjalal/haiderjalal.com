@@ -163,6 +163,16 @@ export const profile: Profile = {
   ],
   experience: [
     {
+      role: "Head of Growth Strategy and Content",
+      organization: "OmniSolve AI",
+      period: "Oct 2026 - Present",
+    },
+    {
+      role: "Senior AI Generalist",
+      organization: "Rumiq Technologies",
+      period: "Oct 2025 - Present",
+    },
+    {
       role: "Founder",
       organization: "Musme",
       period: "Jul 2024 - Present",
