@@ -42,7 +42,7 @@ src/
   app/          routes, metadata, OG image, sitemap, robots
   components/
     layout/     navbar, footer, cursor spotlight
-    sections/   hero with the project card fan, about, services, work, experience, contact
+    sections/   hero with the project card fan, products, about, services, work, experience, contact
     ui/         reveal, tilt card, magnetic link, pausable ticker, timeline rail, icon re-exports
   hooks/        navbar section tracking
   data/         portfolio content
