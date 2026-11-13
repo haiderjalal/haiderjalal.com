@@ -20,8 +20,8 @@ export function Reveal({ children, delay = 0, className }: RevealProps): ReactEl
     <motion.div
       className={className}
       style={{ transformPerspective: 1200 }}
-      initial={reduce ? false : { opacity: 0, y: 32, rotateX: 10 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      initial={reduce ? false : { opacity: 0, y: 32, rotateX: 12, scale: 0.97 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.9, delay, ease: REVEAL_EASE }}
     >

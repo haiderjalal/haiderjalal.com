@@ -8,6 +8,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useReducedMotion,
+  useSpring,
   useTransform,
 } from "motion/react";
 import type { MotionValue } from "motion/react";
@@ -49,6 +50,10 @@ const STEP_DEG = 16;
 // The fan never spans more than this, so extra cards overlap instead of widening the arc.
 // This is the span of nine cards at STEP_DEG, the footprint the hero was designed for.
 const MAX_SPREAD_DEG = 128;
+// Depth in pixels. Cards at the front sit this far toward the viewer, and the sides fall back toward the page.
+const FAN_DEPTH_PX = 140;
+// The whole arc can turn this many degrees toward the pointer, on each axis. The range is half this in each direction.
+const SCENE_TILT_DEG = 16;
 // Idle sway in degrees. It stays small so the front card never changes while the fan drifts.
 const SWAY_DEG = 2;
 const SWAY_PERIOD_MS = 1600;
@@ -90,7 +95,9 @@ function FanCard({
   const transform = useTransform(angle, (value) => {
     // Cards further from the front shrink a little, which deepens the arc.
     const shrink = 1 - 0.06 * (Math.min(Math.abs(value), 40) / 40);
-    return `rotate(${value}deg) translateY(calc(var(--fan-radius) * -1)) scale(${shrink})`;
+    // Cards near the front come forward in 3D, so the arc has real depth when the scene tilts.
+    const depth = Math.cos((value * Math.PI) / 180) * FAN_DEPTH_PX;
+    return `rotate(${value}deg) translateY(calc(var(--fan-radius) * -1)) translateZ(${depth.toFixed(1)}px) scale(${shrink})`;
   });
   const zIndex = useTransform(angle, (value) => 100 - Math.round(Math.abs(value)));
 
@@ -153,6 +160,27 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
   const spread = useMotionValue(0); // 0 = stacked, 1 = fully fanned
   const rotation = useTransform([offset, sway], ([turn, drift]: number[]) => turn + drift);
 
+  // Scene tilt: the whole arc turns toward the pointer. It is mouse-only and stays flat for reduced motion.
+  const sceneTiltX = useMotionValue(0);
+  const sceneTiltY = useMotionValue(0);
+  const smoothTiltX = useSpring(sceneTiltX, { stiffness: 120, damping: 22, mass: 0.6 });
+  const smoothTiltY = useSpring(sceneTiltY, { stiffness: 120, damping: 22, mass: 0.6 });
+
+  function updateSceneTilt(event: PointerEvent<HTMLDivElement>): void {
+    if (reduce || event.pointerType !== "mouse") return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    sceneTiltY.set(x * SCENE_TILT_DEG);
+    sceneTiltX.set(-y * SCENE_TILT_DEG);
+  }
+
+  function resetSceneTilt(): void {
+    sceneTiltX.set(0);
+    sceneTiltY.set(0);
+  }
+
   // Only the active index is React state. It changes once per card, not once per frame.
   const [activeIndex, setActiveIndex] = useState(centerIndex);
   const activeRef = useRef(centerIndex);
@@ -203,6 +231,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
   }
 
   function handlePointerMove(event: PointerEvent<HTMLDivElement>): void {
+    updateSceneTilt(event);
     const drag = dragRef.current;
     if (!drag) return;
 
@@ -255,7 +284,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
 
   return (
     <>
-      <div
+      <motion.div
         role="region"
         aria-roledescription="carousel"
         aria-label="Projects"
@@ -265,6 +294,13 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerEnd}
         onPointerCancel={handlePointerEnd}
+        onPointerLeave={resetSceneTilt}
+        style={{
+          rotateX: smoothTiltX,
+          rotateY: smoothTiltY,
+          transformPerspective: 1600,
+          transformStyle: "preserve-3d",
+        }}
         className="absolute inset-x-0 bottom-[-25vh] top-[46%] z-10 touch-pan-y select-none rounded-[20px] outline-none focus-visible:outline-2 focus-visible:outline-accent"
       >
         {items.map((item, index) => (
@@ -277,7 +313,7 @@ export function ProjectFan({ items }: ProjectFanProps): ReactElement {
             onClick={(event) => handleCardClick(event, index)}
           />
         ))}
-      </div>
+      </motion.div>
 
       <button
         type="button"

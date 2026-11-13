@@ -14,11 +14,16 @@
 - React state holds only the active card index, which changes once per card.
 - The `.fan-stage` CSS variables size the cards and the arc from the viewport, so the arc stays on screen on phones and laptops.
 - Reduced motion stops the sway and the entrance animation, and the fan jumps straight to its final pose.
+- The whole arc is a 3D context (`preserve-3d`). Moving the mouse over it tilts the arc up to 8° on each axis (`SCENE_TILT_DEG`). Each card's depth comes from its angle on the arc, so the front cards sit closest to the viewer. Touch input and reduced motion stay flat.
+- The arc never spans more than nine cards' worth of angle (`MAX_SPREAD_DEG`). With more projects the cards overlap rather than widening the arc.
+- The brand card starts on the centre index the fan uses, so it is the front card on load for any project count.
 
 ## Motion
 
 - Pointer and scroll effects use motion values (`useMotionValue`, `useSpring`, `useScroll`), so they never re-render React.
 - Reveal, tilt, magnetic, spotlight, fan, and timeline effects all respect `prefers-reduced-motion`.
+- Reveal entrances rotate in from 12° and scale from 0.97. Products use `TiltCard` with `preserveDepth`, so their image and text layers sit at different depths and float apart when the card tilts. The products band is the only dark section outside the contact panel.
+- 3D is built with CSS transforms and `motion` values. No WebGL or three.js is in the bundle, so the page stays light. A real WebGL scene would need a new dependency and approval.
 - The outline cycle on the hero name, the marquee, the hero entrance (`.rise`), and the contact glow (`.aurora`) are CSS-only, so they show before JavaScript loads. Each one is switched off under reduced motion by its own rule. The global `animation-duration: 0.01ms` override is deliberately not used, because it makes some animations more jarring.
 - Auto-moving content has a way to stop it. The ticker has a visible pause button, which sets `data-paused` on its wrapper and pauses the marquee track (WCAG 2.2.2).
 - The entrance and caption transitions use `transform` and `opacity` only, so they stay on the compositor.

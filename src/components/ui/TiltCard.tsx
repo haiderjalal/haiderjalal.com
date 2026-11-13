@@ -15,11 +15,17 @@ const MAX_TILT_DEGREES = 7;
 interface TiltCardProps {
   children: ReactNode;
   className?: string;
+  // Keeps children in 3D space, so a child with a translateZ offset floats above the card when it tilts.
+  preserveDepth?: boolean;
 }
 
 // Tilts toward the pointer and shows a soft glare. Pointer position lives in motion values,
 // so moving the mouse never re-renders React. Touch input and reduced motion stay flat.
-export function TiltCard({ children, className = "" }: TiltCardProps): ReactElement {
+export function TiltCard({
+  children,
+  className = "",
+  preserveDepth = false,
+}: TiltCardProps): ReactElement {
   const reduce = useReducedMotion();
   const pointerX = useMotionValue(0.5);
   const pointerY = useMotionValue(0.5);
@@ -52,6 +58,7 @@ export function TiltCard({ children, className = "" }: TiltCardProps): ReactElem
         rotateX: reduce ? 0 : rotateX,
         rotateY: reduce ? 0 : rotateY,
         transformPerspective: 1000,
+        transformStyle: preserveDepth ? "preserve-3d" : undefined,
       }}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetTilt}
@@ -60,7 +67,7 @@ export function TiltCard({ children, className = "" }: TiltCardProps): ReactElem
       <motion.div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: glare }}
+        style={{ background: glare, translateZ: preserveDepth ? 90 : undefined }}
       />
     </motion.div>
   );
