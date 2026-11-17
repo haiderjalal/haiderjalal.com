@@ -245,13 +245,6 @@ export const profile: Profile = {
       organization: "RFZ Digital",
       period: "Jan 2024 - Apr 2024",
     },
-    {
-      role: "Founder",
-      organization: "STEAM",
-      period: "Jan 2023 - May 2023",
-      summary:
-        "Founded STEAM to combine software, engineering, and marketing under one brand. Led business strategy, product development, and client work.",
-    },
   ],
   education: [
     {
