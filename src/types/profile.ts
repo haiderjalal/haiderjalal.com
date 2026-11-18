@@ -45,7 +45,7 @@ export interface ProjectItem {
   tags: readonly string[];
 }
 
-export interface ProductItem {
+export interface ToolItem {
   name: string;
   tagline: string;
   summary: string;
@@ -88,7 +88,7 @@ export interface Profile {
   tickerItems: readonly string[];
   services: readonly ServiceItem[];
   projects: readonly ProjectItem[];
-  products: readonly ProductItem[];
+  tools: readonly ToolItem[];
   experience: readonly ExperienceItem[];
   education: readonly EducationItem[];
   socials: readonly SocialLink[];

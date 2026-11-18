@@ -161,15 +161,32 @@ export const profile: Profile = {
       tags: ["Coffee", "Brunch", "Events"],
     },
     {
-      name: "PDFDesk",
+      name: "Contemporary Dental Care",
       summary:
-        "A free online PDF editor and PDF-to-Word converter. Edit text, add images and shapes, and download, with no sign-up needed.",
-      url: "https://pdfdesk.musme.co/",
-      image: { src: "/projects/pdfdesk.jpg", alt: "PDFDesk website" },
-      tags: ["PDF", "Free", "Converter"],
+        "Patient-focused dental care in Orlando and Ocoee, Florida, covering routine care, emergency visits, implants, cosmetic treatment, and clear aligners.",
+      url: "https://contemporarydentalcare.com/",
+      image: {
+        src: "/projects/contemporary-dental-care.jpg",
+        alt: "Contemporary Dental Care website",
+      },
+      tags: ["Dental", "Healthcare", "Orlando"],
     },
   ],
-  products: [
+  tools: [
+    {
+      name: "TestShift",
+      tagline: "Four AI agents. One QA shift.",
+      summary:
+        "Rent an AI QA team by the hour. Dev, Staging, UAT, and Prod agents test your site in a real browser, then hand you the bug report.",
+      url: "https://testshift.musme.co/",
+      image: { src: "/projects/testshift.jpg", alt: "TestShift homepage" },
+      badge: "First 20 minutes free, no card needed",
+      highlights: [
+        "Each agent owns one environment and one kind of test",
+        "Failures ranked by severity, with steps to reproduce",
+        "Replayable browser checks for your CI",
+      ],
+    },
     {
       name: "Citable",
       tagline: "See your site the way AI search does.",
@@ -185,17 +202,17 @@ export const profile: Profile = {
       ],
     },
     {
-      name: "TestShift",
-      tagline: "Four AI agents. One QA shift.",
+      name: "PDFDesk",
+      tagline: "Edit PDFs like a Word document",
       summary:
-        "Rent an AI QA team by the hour. Dev, Staging, UAT, and Prod agents test your site in a real browser, then hand you the bug report.",
-      url: "https://testshift.musme.co/",
-      image: { src: "/projects/testshift.jpg", alt: "TestShift homepage" },
-      badge: "First 20 minutes free, no card needed",
+        "A free online PDF editor and PDF-to-Word converter. Edit text, add images and shapes, and download, with no sign-up needed.",
+      url: "https://pdfdesk.musme.co/",
+      image: { src: "/projects/pdfdesk.jpg", alt: "PDFDesk homepage" },
+      badge: "Free, no account needed",
       highlights: [
-        "Each agent owns one environment and one kind of test",
-        "Failures ranked by severity, with steps to reproduce",
-        "Replayable browser checks for your CI",
+        "Edit existing text, add images, shapes, and signatures",
+        "PDF to Word keeps paragraphs, tables, and layout",
+        "Word to PDF from DOCX, DOC, RTF, or ODT",
       ],
     },
   ],
