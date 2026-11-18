@@ -144,6 +144,30 @@ export const profile: Profile = {
       image: { src: "/projects/mamacrochet.jpg", alt: "Mama Crochet website" },
       tags: ["Handmade", "Custom", "Gifts"],
     },
+    {
+      name: "Mastara",
+      summary:
+        "A 3D menu for a rooftop restaurant in Islamabad. Guests view any dish in 3D, add it to their order, and send it straight to the kitchen.",
+      url: "https://mastara.musme.co/",
+      image: { src: "/projects/mastara.jpg", alt: "Mastara website" },
+      tags: ["3D menu", "Restaurant", "Ordering"],
+    },
+    {
+      name: "Crema Lounge",
+      summary:
+        "A specialty coffee lounge in F-7 Markaz, Islamabad, with manual brews, all-day breakfast, and regular game nights and workshops.",
+      url: "https://crema.musme.co/",
+      image: { src: "/projects/crema.jpg", alt: "Crema Lounge website" },
+      tags: ["Coffee", "Brunch", "Events"],
+    },
+    {
+      name: "PDFDesk",
+      summary:
+        "A free online PDF editor and PDF-to-Word converter. Edit text, add images and shapes, and download, with no sign-up needed.",
+      url: "https://pdfdesk.musme.co/",
+      image: { src: "/projects/pdfdesk.jpg", alt: "PDFDesk website" },
+      tags: ["PDF", "Free", "Converter"],
+    },
   ],
   products: [
     {
