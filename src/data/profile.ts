@@ -113,14 +113,6 @@ export const profile: Profile = {
       tags: ["Retail", "UI", "Responsive"],
     },
     {
-      name: "PeptoLogics",
-      summary:
-        "Research peptide catalogue with a manual inquiry pipeline and lot documentation.",
-      url: "https://www.peptologics.com/",
-      image: { src: "/projects/peptologics.jpg", alt: "PeptoLogics website" },
-      tags: ["Next.js", "Supabase", "Leads"],
-    },
-    {
       name: "HonyB",
       summary:
         "Raw Sidr, Acacia, and Wildflower honey delivered across Pakistan. Orders are built online and confirmed by phone or WhatsApp.",
